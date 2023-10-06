@@ -201,7 +201,62 @@ public class LinkedTree<E> extends DrawableTree<E> {
             }
         }
     }
+    public Iterator<Position<E>> iteratorPreOrder() {
+        if (isEmpty()) {
+            // empty iterator
+            return new ArrayList<Position<E>>().iterator();
+        }
+        List<Position<E>> positions = new ArrayList<>();
+        preOrderTraversal(root, positions);
+        return positions.iterator();
+    }
 
+
+    public Iterator<Position<E>> iteratorPostOrder() {
+        if (isEmpty()) {
+            // empty iterator
+            return new ArrayList<Position<E>>().iterator();
+        }
+        List<Position<E>> positions = new ArrayList<>();
+        postOrderTraversal(root, positions);
+        return positions.iterator();
+    }
+
+    private void breadthFirstTraversal(TreeNode<E> node, List<Position<E>> positions) {
+        if(node!=null){
+            List<TreeNode<E>> queue = new ArrayList<>();
+            queue.add(node);
+            while (!queue.isEmpty()){
+                TreeNode<E> nodeToVisit= queue.remove(0);
+                positions.add(nodeToVisit);
+                queue.addAll(nodeToVisit.getChildren());
+            }
+        }
+    }
+
+    private void postOrderTraversal(TreeNode<E> root, List<Position<E>> positions) {
+        if (root!= null){
+            for (TreeNode<E> child : root.getChildren()){
+                postOrderTraversal(child,positions);
+            }
+            positions.add(root);
+        }
+    }
+
+    private void preOrderTraversal(TreeNode<E> node, List<Position<E>> positions) {
+        if (node!= null){
+            positions.add(node);
+            for (TreeNode<E> child : node.getChildren()){
+                preOrderTraversal(child,positions);
+            }
+        }
+    }
+
+    /**
+     * Return the number of elements stored in the tree.
+     *
+     * @return the number of elements in the tree
+     */
     public int size() {
         return size;
     }

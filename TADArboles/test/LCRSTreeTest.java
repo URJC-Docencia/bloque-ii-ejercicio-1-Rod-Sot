@@ -1,10 +1,7 @@
 import material.Position;
-import org.testng.annotations.Test;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.fail;
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
 
 
 /**
